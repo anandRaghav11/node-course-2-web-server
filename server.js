@@ -1,7 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
 const port = process.env.PORT || 3000;
+console.log(port);
 
 var app = express();
 hbs.registerPartials(__dirname + '/Views/Partials')
@@ -22,9 +24,9 @@ app.use((req,res,next)=>{
   next();
 });
 
-app.use((req,res,next)=>{
-  res.render('maintenance.hbs');
-});
+// app.use((req,res,next)=>{
+//   res.render('maintenance.hbs');
+// });
 
 app.use(express.static(__dirname + '/public'));
 
@@ -34,7 +36,7 @@ app.get('/',(req, res) => {
   //   name:'Raghav',
   //   likes:['reading','playing']
   // });
-
+  console.log('home');
   res.render('home.hbs',{
     pageTitle:'Home Page',
     name:'Raghav',
@@ -44,6 +46,7 @@ app.get('/',(req, res) => {
 });
 
 app.get('/about', (req,res) => {
+  console.log('about');
   res.render('about.hbs',{
     pageTitle:'About Page',
     currentYear : new Date().getFullYear()
